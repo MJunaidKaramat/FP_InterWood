@@ -7,25 +7,19 @@ using OpenQA.Selenium.Edge;
 namespace FP_InterWood
 {
     [TestClass]
-    public class MainClass: GeneralMethodsClass
+    public class MainadsfgsClass
     {
-        IWebDriver webDriver ;
-        public string url = "https://interwood.pk/";
+        GeneralMethodsClass obj = new GeneralMethodsClass("chrome");
+        SignUPClass signUpObj = new SignUPClass();
+        string url = "https://interwood.pk/";
+        
         [TestMethod]
-        public void BrowserInitializationMethod()
+        public void signUpScreen()
         {
-            webDriver = browser("chrome");
-            webDriver.Manage().Window.Maximize();
-            webDriver.Url = url;
-        }
-        #region SignUpMethodElements
-        By userIcon = By.XPath("//*[@id=\"root\"]/main/div[3]/header/div/div/div[1]/div[2]/div[2]/div[1]/button/span/a/i");
-
-        #endregion
-        [TestMethod]
-        public void SignUpMethod()
-        {
-            ClickableItem(userIcon, webDriver);
+           
+            signUpObj.landingPage(url);
+            System.Threading.Thread.Sleep(2000);
+             signUpObj.signUp();
         }
     }
 }

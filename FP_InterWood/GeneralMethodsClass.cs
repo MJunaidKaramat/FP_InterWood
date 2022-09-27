@@ -6,45 +6,55 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 
 namespace FP_InterWood
 {
     public class GeneralMethodsClass
     {
-        WebDriver driver;
-        public GeneralMethodsClass(WebDriver driver)
+        public static IWebDriver driver;
+        public GeneralMethodsClass()
         {
-            this.driver = driver;
+            //driver = null;
         }
-        public IWebDriver browser(string browserName)
+        public GeneralMethodsClass(string browserName)
         {
-            IWebDriver driver = null;
             if (browserName.Equals("chrome", StringComparison.InvariantCultureIgnoreCase))
             {
                 driver = new ChromeDriver();
-
             }
-            else if (browserName.Equals("edge", StringComparison.InvariantCultureIgnoreCase)) {
-
+            else if (browserName.Equals("edge", StringComparison.InvariantCultureIgnoreCase))
+            {
                 driver = new EdgeDriver();
             }
-
-            return driver;
-
-        }
-
-        public IWebElement findElement(By path, IWebDriver dr)
-        {
+            driver.Manage().Window.Maximize();
             
-            return dr.FindElement(path);
         }
-
-        public void ClickableItem(By path, IWebDriver d)
+        public void landingPage(string u)
         {
-            IWebElement icon = findElement(path, d);
-            icon.Click();
+            driver.Url = u;
+           // driver.FindElement(By.XPath("//*[@id=\"root\"]/main/div[3]/header/div/div/div[1]/div[2]/div[2]/div[1]/button/span/a/i")).Click();
+        }
+        public IWebElement findElement(By path)
+        {   
+            return driver.FindElement(path);
         }
 
+        public void ClickableItem(IWebElement element)
+        {
+            Actions action = new Actions(driver);
+            action.Click(element).Build().Perform();
+        }
 
+        public void dropDownItemSelect(IWebElement drpDown, string value)
+        {
+            SelectElement dropDownMenu = new SelectElement(drpDown);
+            dropDownMenu.SelectByValue(value);
+        }
+        public void inputText(IWebElement txtbox, string data)
+        {
+            txtbox.SendKeys(data);
+        }
     }
 }
