@@ -8,6 +8,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace FP_InterWood
 {
@@ -41,20 +42,33 @@ namespace FP_InterWood
             return driver.FindElement(path);
         }
 
-        public void ClickableItem(IWebElement element)
+        public void ClickableItem(By path)
         {
+            IWebElement element = ExplicitWaitElementIsVisible(path);
+            //element.Click();
             Actions action = new Actions(driver);
             action.Click(element).Build().Perform();
         }
 
-        public void dropDownItemSelect(IWebElement drpDown, string value)
+        public void dropDownItemSelect(By path, string value)
         {
+            IWebElement drpDown = findElement(path);
             SelectElement dropDownMenu = new SelectElement(drpDown);
             dropDownMenu.SelectByValue(value);
         }
-        public void inputText(IWebElement txtbox, string data)
+        public void inputText(By path, string data)
         {
-            txtbox.SendKeys(data);
+            IWebElement txtBox = findElement(path);
+            txtBox.SendKeys(data);
+        }
+        public void ImplicitWait(int i)
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(i);
+        }
+        public IWebElement ExplicitWaitElementIsVisible(By path)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(path));
         }
     }
 }

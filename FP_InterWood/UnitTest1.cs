@@ -9,7 +9,7 @@ namespace FP_InterWood
     [TestClass]
     public class MainadsfgsClass
     {
-        GeneralMethodsClass obj = new GeneralMethodsClass("chrome");
+        GeneralMethodsClass obj = new GeneralMethodsClass("edge");
         SignUPClass signUpObj = new SignUPClass();
         string url = "https://interwood.pk/";
         
@@ -19,7 +19,7 @@ namespace FP_InterWood
            
             signUpObj.landingPage(url);
             System.Threading.Thread.Sleep(2000);
-             signUpObj.signUp();
+            signUpObj.signUp();
         }
     }
 }

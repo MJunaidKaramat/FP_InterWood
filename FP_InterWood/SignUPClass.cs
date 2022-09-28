@@ -32,28 +32,19 @@ namespace FP_InterWood
         {
             
 
-            IWebElement userIconF = findElement(userIcon);
-            userIconF.Click();
-            //IWebElement createAccountButtonF = findElement(createAccountButton);
-            //IWebElement emailFieldF = findElement(emailField);
-            //IWebElement passwordFieldF = findElement(passwordField);
-            //IWebElement firstnameFieldF = findElement(firstNameField);
-            //IWebElement lastnameFieldF = findElement(lastNameField);
-            //IWebElement addressFieldF = findElement(addressField);
-            //IWebElement cityFieldF = findElement(cityField);
-            //IWebElement phoneFieldF = findElement(phoneField);
-            //IWebElement termsCheckF = findElement(termsCheck);
-            //IWebElement subscribeCheckF = findElement(subscribeCheck);
-            //IWebElement CreateAccountSubmitButtonF = findElement(CreateAccountSubmitButton);
-
-           // ClickableItem(userIconF);
-            //ClickableItem(createAccountButtonF);
-            //inputText(emailFieldF, "abc123@gmail.com");
-            //inputText(passwordFieldF, "abc123@gmail");
-            //inputText(firstnameFieldF, "abcdef");
-            //inputText(lastnameFieldF, "xyz");
-
-            
+            ClickableItem(userIcon);
+            ClickableItem(createAccountButton);
+            ImplicitWait(10);
+            inputText(emailField, "abc123@gmail.com");
+            inputText(passwordField, "abc123@gmail");
+            inputText(firstNameField, "abcdef");
+            inputText(lastNameField, "xyz");
+            inputText(addressField, "Lahore");
+            dropDownItemSelect(cityField, "Lahore");
+            inputText(phoneField, "0300-0123456");
+            ClickableItem(termsCheck);
+            ClickableItem(subscribeCheck);
+            ClickableItem(CreateAccountSubmitButton);
         }
     }
     
