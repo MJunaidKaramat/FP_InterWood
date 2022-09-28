@@ -14,7 +14,6 @@ namespace FP_InterWood
     {
         
         #region ElementsOfSignUpPage
-        By userIcon = By.XPath("//*[@id=\"root\"]/main/div[3]/header/div/div/div[1]/div[2]/div[2]/div[1]/button/span/a/i");
         By createAccountButton = By.LinkText("Create an Account");
         By emailField = By.Name("customer.email");
         By passwordField = By.XPath("//input[@type='password']");
@@ -30,7 +29,6 @@ namespace FP_InterWood
 
         public void signUp()
         {
-            ClickableItem(userIcon);
             ClickableItem(createAccountButton);
             ImplicitWait(10);
             inputText(emailField, "abc123@gmail.com");
@@ -40,8 +38,8 @@ namespace FP_InterWood
             inputText(addressField, "Lahore");
             dropDownItemSelect(cityField, "Lahore");
             inputText(phoneField, "0300-0123456");
-            ClickableItem(termsCheck);
-            ClickableItem(subscribeCheck);
+            CheckBoxItem(termsCheck);
+            CheckBoxItem(subscribeCheck);
             ClickableItem(CreateAccountSubmitButton);
         }
     }

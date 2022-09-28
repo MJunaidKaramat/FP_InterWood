@@ -60,6 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GeneralMethodsClass.cs" />
+    <Compile Include="landingPageClass.cs" />
+    <Compile Include="SignInClass.cs" />
     <Compile Include="SignUPClass.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -35,7 +35,6 @@ namespace FP_InterWood
         public void landingPage(string u)
         {
             driver.Url = u;
-           // driver.FindElement(By.XPath("//*[@id=\"root\"]/main/div[3]/header/div/div/div[1]/div[2]/div[2]/div[1]/button/span/a/i")).Click();
         }
         public IWebElement findElement(By path)
         {   
@@ -43,6 +42,13 @@ namespace FP_InterWood
         }
 
         public void ClickableItem(By path)
+        {
+            IWebElement element = ExplicitWaitElementIsVisible(path);
+            //element.Click();
+            Actions action = new Actions(driver);
+            action.Click(element).Build().Perform();
+        }
+        public void CheckBoxItem(By path)
         {
             IWebElement element = ExplicitWaitElementIsVisible(path);
             //element.Click();
