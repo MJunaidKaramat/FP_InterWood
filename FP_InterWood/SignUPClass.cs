@@ -30,8 +30,6 @@ namespace FP_InterWood
 
         public void signUp()
         {
-            
-
             ClickableItem(userIcon);
             ClickableItem(createAccountButton);
             ImplicitWait(10);
