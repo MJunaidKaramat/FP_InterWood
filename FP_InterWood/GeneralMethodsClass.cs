@@ -62,6 +62,10 @@ namespace FP_InterWood
             SelectElement dropDownMenu = new SelectElement(drpDown);
             dropDownMenu.SelectByValue(value);
         }
+        public IWebElement returnElement(By path)
+        {
+            return findElement(path);
+        }
         public void inputText(By path, string data)
         {
             IWebElement txtBox = findElement(path);
@@ -75,6 +79,38 @@ namespace FP_InterWood
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(path));
+        }
+        public void scrollPageDown()
+        {
+            IJavaScriptExecutor scroller = (IJavaScriptExecutor)driver;
+            for (int i = 0; i < 1000; i++)
+            {
+                scroller.ExecuteScript("window.scrollBy(0," + i + ")", "");
+            }
+        }
+        public void scrollToElement(By path)
+        {
+            IJavaScriptExecutor scroller = (IJavaScriptExecutor)driver;
+            IWebElement detectedElement = ExplicitWaitElementIsVisible(path);
+            scroller.ExecuteScript("arguments[0].scrollIntoView(true);", detectedElement);
+        }
+        public void scrollPageUp()
+        {
+            IJavaScriptExecutor scroller = (IJavaScriptExecutor)driver;
+            scroller.ExecuteScript("window.scrollTo(0, document." + "head" + ".scrollHeight);");
+        }
+        public void hoverAction(By path)
+        {
+            IWebElement webElement = findElement(path);
+            Actions action = new Actions(driver);
+            action.MoveToElement(webElement).Build().Perform();
+        }
+        public void scrollToElementClick(By path)
+        {
+            IJavaScriptExecutor scroller = (IJavaScriptExecutor)driver;
+            IWebElement detectedElement = ExplicitWaitElementIsVisible(path);
+            scroller.ExecuteScript("arguments[0].scrollIntoView(true);", detectedElement);
+            ClickableItem(path);
         }
     }
 }

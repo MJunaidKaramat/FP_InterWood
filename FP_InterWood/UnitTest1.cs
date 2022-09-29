@@ -3,6 +3,7 @@ using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
+using System.Threading;
 
 namespace FP_InterWood
 {
@@ -13,6 +14,9 @@ namespace FP_InterWood
         SignUPClass signUpObj = new SignUPClass();
         landingPageClass lpObj = new landingPageClass();
         SignInClass signInObj = new SignInClass();
+        landingPageClass lpClass = new landingPageClass();
+        ElementSelectOnLandingPage eslpObj = new ElementSelectOnLandingPage();
+
         string url = "https://interwood.pk/";
         
         [TestMethod]
@@ -20,7 +24,7 @@ namespace FP_InterWood
         {
             signUpObj.landingPage(url);
             lpObj.signinSignUpButton();
-            System.Threading.Thread.Sleep(2000);
+            Thread.Sleep(2000);
             signUpObj.signUp();
         }
         [TestMethod]
@@ -28,7 +32,24 @@ namespace FP_InterWood
         {
             signInObj.landingPage(url);
             lpObj.signinSignUpButton();
+            System.Threading.Thread.Sleep(3000);
             signInObj.signIn();
+        }
+        [TestMethod]
+        public void LandingPage()
+        {
+            lpClass.landingPage(url);
+            lpClass.ScrollHomePage();
+            Thread.Sleep(4000);
+            lpClass.cartStatus();
+            lpClass.cartStatus();
+            lpClass.navBarScrolling();
+        }
+        [TestMethod]
+        public void selectElementPage()
+        {
+            eslpObj.landingPage(url);
+            eslpObj.selectObject();
         }
     }
 }

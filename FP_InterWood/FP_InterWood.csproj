@@ -59,6 +59,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ElementSelectOnLandingPage.cs" />
+    <Compile Include="FilterClass.cs" />
     <Compile Include="GeneralMethodsClass.cs" />
     <Compile Include="landingPageClass.cs" />
     <Compile Include="SignInClass.cs" />
