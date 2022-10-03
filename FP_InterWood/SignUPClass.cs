@@ -12,7 +12,6 @@ namespace FP_InterWood
 {
     public class SignUPClass:GeneralMethodsClass
     {
-        
         #region ElementsOfSignUpPage
         By createAccountButton = By.LinkText("Create an Account");
         By emailField = By.Name("customer.email");

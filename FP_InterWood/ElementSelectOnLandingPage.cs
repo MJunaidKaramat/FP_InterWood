@@ -22,6 +22,8 @@ namespace FP_InterWood
         By decrementItemCount = By.XPath("//*[@id=\"root\"]/main/div[4]/div[2]/form/section[1]/div[1]/button[1]");
         By addToCartButton = By.XPath("//*[@id=\"root\"]/main/div[4]/div[2]/form/section[2]/button");
         By readMoreButton = By.XPath("//*[@id=\"desc\"]/div/button");
+        By installmentBankDetail = By.XPath("//*[@id=\"root\"]/main/div[4]/div[2]/div[2]/div[2]/button/a");
+        By installmentBank = By.Id("installmentMonths");
         #endregion
 
         public void selectObject()
@@ -30,23 +32,50 @@ namespace FP_InterWood
             scrollToElement(scrollToPoint);
             ClickableItem(loadMoreButton);
             scrollToElementClick(visitorChairItem);
-         
             ClickableItem(incrementItemCount);
             ClickableItem(incrementItemCount);
             ClickableItem(incrementItemCount);
-            //ClickableItem(decrementItemCount);
             decrementItemTo1();
+            readMoreOption();
+            intallmentBankDetailsFunc();
+            switchFrame();
+            selectBank();
+            //addToCart();
         }
         public void decrementItemTo1()
         {
             IWebElement decrementButton = returnElement(decrementItemCount);
-            if (decrementButton.Enabled)
+
+            while (decrementButton.Enabled)
             {
-                while (decrementButton.Enabled)
-                {
-                    ClickableItem(decrementItemCount);
-                }
+                ClickableItem(decrementItemCount);
             }
+            //string v = findElement(countBox).GetAttribute("value");
+            //while(Convert.ToInt32(v)!=1)
+            //{
+            //    ClickableItem(decrementItemCount);
+            //}
         }
+        public void addToCart()
+        {
+            ClickableItem(addToCartButton);
+        }
+        public void readMoreOption()
+        {
+            scrollToElementClick(readMoreButton);
+        }
+        public void intallmentBankDetailsFunc()
+        {
+            ClickableItem(installmentBankDetail);
+        }
+        public void switchFrame()
+        {
+            switchToChildFrame();
+        }
+        public void selectBank()
+        {
+            dropDownItemSelect(installmentBank, "3");
+        }
+
     }
 }

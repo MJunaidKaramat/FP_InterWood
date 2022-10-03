@@ -19,7 +19,7 @@ namespace FP_InterWood
         {
             //driver = null;
         }
-        public GeneralMethodsClass(string browserName)
+        public void BrowserSelection(string browserName)
         {
             if (browserName.Equals("chrome", StringComparison.InvariantCultureIgnoreCase))
             {
@@ -31,6 +31,10 @@ namespace FP_InterWood
             }
             driver.Manage().Window.Maximize();
             
+        }
+        public void closeBrowser()
+        {
+            driver.Close();
         }
         public void landingPage(string u)
         {
@@ -111,6 +115,14 @@ namespace FP_InterWood
             IWebElement detectedElement = ExplicitWaitElementIsVisible(path);
             scroller.ExecuteScript("arguments[0].scrollIntoView(true);", detectedElement);
             ClickableItem(path);
+        }
+        public void switchToChildFrame()
+        {
+
+            var prntWindow = driver.WindowHandles[0];
+            var cldWindow = driver.WindowHandles[1];
+            driver.SwitchTo().Frame(cldWindow);
+
         }
     }
 }
