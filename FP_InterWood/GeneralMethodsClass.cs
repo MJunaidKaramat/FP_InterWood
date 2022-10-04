@@ -73,7 +73,6 @@ namespace FP_InterWood
         }
         public void inputText(By path, string data)
         {
-
             IWebElement txtBox = ExplicitWaitElementIsVisible(path);
             txtBox.SendKeys(data);
         }
@@ -124,9 +123,20 @@ namespace FP_InterWood
             var cldWindow = driver.WindowHandles[1];
             driver.SwitchTo().Frame(cldWindow);
         }
+        public string getText(By path)
+        {
+            string str="";
+            IWebElement element = ExplicitWaitElementIsVisible(path);
+            str = element.GetAttribute("innerHTML");
+            return str;
+        }
         public void LogFile(string str)
         {
             log.Info(str);
+        }
+        public void ErrorLog(string str)
+        {
+            log.Error(str);
         }
     }
 }

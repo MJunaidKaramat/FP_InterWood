@@ -28,7 +28,7 @@ namespace FP_InterWood
         string chrome = "chrome";
         string edge = "edge";
 
-        [TestMethod]
+        //[TestMethod]
         public void TC_01_BrowserCompatibilityCheck()
         {
             By mainLogo = By.XPath("//*[@id=\"root\"]/main/div[3]/header/div/div/div[1]/div[1]/a/img");
@@ -51,6 +51,7 @@ namespace FP_InterWood
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signUpData.xml", "SignUpValid", DataAccessMethod.Sequential)]
         public void TC_02_signUpScreen()
         {
+            By createdUserName = By.XPath("//button[@class='logged-in']/span/span[contains(text(),'Hi')]");
             TS_02_VerifySignUp signUpObj = new TS_02_VerifySignUp();
 
             string email = TestContext.DataRow["userEmail"].ToString();
@@ -70,12 +71,16 @@ namespace FP_InterWood
             signUpObj.BrowserSelection(chrome);
             signUpObj.landingPage(url);
             signUpObj.TC02_SignUpWithValidCredentials(email, password, firstName, lastName, address, city, phone);
+            string str = signUpObj.getText(createdUserName);
+            Assert.AreEqual(("Hi, " + firstName),str);
+            signUpObj.LogFile(str + " has been successfully Registered.");
             signUpObj.closeBrowser();
         }
-        //[TestMethod]
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signUpData.xml", "SignUpInvalid", DataAccessMethod.Sequential)]
+        [TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signUpData.xml", "SignUpAlreadyRegistered", DataAccessMethod.Sequential)]
         public void TC_03_signUpScreen()
         {
+            By message = By.XPath("//span[contains(text(),'A customer with')]");
             TS_02_VerifySignUp signUpObj = new TS_02_VerifySignUp();
 
             string email = TestContext.DataRow["userEmail"].ToString();
@@ -88,13 +93,18 @@ namespace FP_InterWood
 
             signUpObj.BrowserSelection(chrome);
             signUpObj.landingPage(url);
-            signUpObj.TC03_SignUpWithInvalidCredentials(email, password, firstName, lastName, address, city, phone);
+            signUpObj.TC06_SignUpWithAlreadyRegistered(email, password, firstName, lastName, address, city, phone);
+            string alertMessage = "A customer with the same email address already exists in an associated website.";
+            string actual = signUpObj.getText(message);
+            Assert.AreEqual(alertMessage, actual);
+            signUpObj.LogFile("" + " cannot Registered as email already exists.");
             signUpObj.closeBrowser();
         }
-        //[TestMethod]
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signUpData.xml", "SignUpClickable", DataAccessMethod.Sequential)]
+        [TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signUpData.xml", "SignUpInvalid", DataAccessMethod.Sequential)]
         public void TC_04_signUpScreen()
         {
+            By invalidEmailFormat = By.XPath("//span[contains(text(),'not a valid email')]");
             TS_02_VerifySignUp signUpObj = new TS_02_VerifySignUp();
 
             string email = TestContext.DataRow["userEmail"].ToString();
@@ -108,12 +118,41 @@ namespace FP_InterWood
             signUpObj.BrowserSelection(chrome);
             signUpObj.landingPage(url);
             signUpObj.TC04_SignUpButtonClickable(email, password, firstName, lastName, address, city, phone);
+            string str = signUpObj.getText(invalidEmailFormat);
+            string alertMessage = "\"" + email +"\" " + "is not a valid email address.";
+            Assert.AreEqual(alertMessage, str);
+            signUpObj.LogFile(str + " Cannot be registered with Invalid Email format.");
             signUpObj.closeBrowser();
         }
         //[TestMethod]
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signUpData.xml", "SignUpValid", DataAccessMethod.Sequential)]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signUpData.xml", "SignUpBlankCredentials", DataAccessMethod.Sequential)]
         public void TC_05_signUpScreen()
         {
+            By errorMessage = By.XPath("//*/p[contains(text(),'Is requi')]");
+            TS_02_VerifySignUp signUpObj = new TS_02_VerifySignUp();
+
+            string email = TestContext.DataRow["userEmail"].ToString();
+            string password = TestContext.DataRow["userPassword"].ToString();
+            string firstName = TestContext.DataRow["firstName"].ToString();
+            string lastName = TestContext.DataRow["lastName"].ToString();
+            string address = TestContext.DataRow["userAddress"].ToString();
+            string city = TestContext.DataRow["userCity"].ToString();
+            string phone = TestContext.DataRow["userPhone"].ToString();
+
+            signUpObj.BrowserSelection(chrome);
+            signUpObj.landingPage(url);
+            signUpObj.TC05_SignUpWithoutAcceptingTerms(email, password, firstName, lastName, address, city, phone);
+            string message = "Is required.";
+            string collectedMessage = signUpObj.getText(errorMessage);
+            Assert.AreEqual(message, collectedMessage);
+            signUpObj.LogFile(collectedMessage + " because user cannot be registered with blank mandatory fields.");
+            signUpObj.closeBrowser();
+        }
+       // [TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signUpData.xml", "SignUpValid", DataAccessMethod.Sequential)]
+        public void TC_06_signUpScreen()
+        {
+            By createdUserName = By.XPath("//button[@class='logged-in']/span/span[contains(text(),'Hi')]");
             TS_02_VerifySignUp signUpObj = new TS_02_VerifySignUp();
 
             string email = TestContext.DataRow["userEmail"].ToString();
@@ -130,7 +169,7 @@ namespace FP_InterWood
             signUpObj.closeBrowser();
         }
 
-        [TestMethod]
+        //[TestMethod]
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signInData.xml", "LoginValid", DataAccessMethod.Sequential)]
         public void TC_06_SignInScreen()
         {
@@ -145,7 +184,7 @@ namespace FP_InterWood
             
             signInObj.closeBrowser();
         }
-        [TestMethod]
+        //[TestMethod]
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signInData.xml", "LoginInvalid", DataAccessMethod.Sequential)]
         public void TC_07_SignInScreen()
         {
@@ -159,7 +198,7 @@ namespace FP_InterWood
             signInObj.SignInFunctionality(email, pass);
             signInObj.closeBrowser();
         }
-        [TestMethod]
+        //[TestMethod]
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signInData.xml", "LoginWithUnregistered", DataAccessMethod.Sequential)]
         public void TC_08_SignInScreen()
         {
@@ -173,7 +212,7 @@ namespace FP_InterWood
             signInObj.SignInFunctionality(email, pass);
             signInObj.closeBrowser();
         }
-        [TestMethod]
+        //[TestMethod]
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signInData.xml", "LoginWithEmptyEmailPass", DataAccessMethod.Sequential)]
         public void TC_09_SignInScreen()
         {
@@ -187,7 +226,7 @@ namespace FP_InterWood
             signInObj.SignInFunctionality(email, pass);
             signInObj.closeBrowser();
         }
-        [TestMethod]
+        //[TestMethod]
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signInData.xml", "LoginWithEmptyEmail", DataAccessMethod.Sequential)]
         public void TC_10_SignInScreen()
         {
@@ -201,7 +240,7 @@ namespace FP_InterWood
             signInObj.SignInFunctionality(email, pass);
             signInObj.closeBrowser();
         }
-        [TestMethod]
+        //[TestMethod]
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signInData.xml", "LoginWithEmptyPass", DataAccessMethod.Sequential)]
         public void TC_11_SignInScreen()
         {

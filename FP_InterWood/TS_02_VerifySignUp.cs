@@ -25,7 +25,7 @@ namespace FP_InterWood
         By phoneField = By.Name("address.telephone");
         By termsCheck = By.XPath("//*[@id=\"root\"]/main/div[4]/div/div/div/div/form/div[2]/div[6]/label/input");
         By subscribeCheck = By.XPath("//*[@id=\"root\"]/main/div[4]/div/div/div/div/form/div[2]/div[7]/label");
-        By CreateAccountSubmitButton = By.XPath("//button[text()='Create Account']");
+        By createAccountSubmitButton = By.XPath("//button[text()='Create Account']");
         #endregion
 
         public void TC02_SignUpWithValidCredentials(string eF, string pF, string fNF, string lNF, string aF, 
@@ -43,9 +43,9 @@ namespace FP_InterWood
             inputText(phoneField, phF);
             CheckBoxItem(termsCheck);
             CheckBoxItem(subscribeCheck);
-            ClickableItem(CreateAccountSubmitButton);
+            ClickableItem(createAccountSubmitButton);           
         }
-        public void TC03_SignUpWithInvalidCredentials(string eF, string pF, string fNF, string lNF, string aF,
+        public void TC03_SignUpWithBlankFields(string eF, string pF, string fNF, string lNF, string aF,
         string cF, string phF)
         {
             ClickableItem(userIcon);
@@ -60,7 +60,8 @@ namespace FP_InterWood
             inputText(phoneField, phF);
             CheckBoxItem(termsCheck);
             CheckBoxItem(subscribeCheck);
-            ClickableItem(CreateAccountSubmitButton);
+            ClickableItem(createAccountSubmitButton);
+
 
         }
 
@@ -79,7 +80,7 @@ namespace FP_InterWood
             inputText(phoneField, phF);
             CheckBoxItem(termsCheck);
             CheckBoxItem(subscribeCheck);
-            ClickableItem(CreateAccountSubmitButton);
+            ClickableItem(createAccountSubmitButton);
         }
 
         public void TC05_SignUpWithoutAcceptingTerms(string eF, string pF, string fNF, string lNF, string aF,
@@ -95,7 +96,32 @@ namespace FP_InterWood
             inputText(addressField, aF);
             dropDownItemSelect(cityField, cF);
             inputText(phoneField, phF);
-            ClickableItem(CreateAccountSubmitButton);
+            try
+            {
+                ClickableItem(createAccountSubmitButton);
+            }
+            catch
+            {
+
+                ErrorLog("System is unable to sign up without Accepting Terms and Conditions");
+            }
+        }
+        public void TC06_SignUpWithAlreadyRegistered(string eF, string pF, string fNF, string lNF, string aF,
+        string cF, string phF)
+        {
+            ClickableItem(userIcon);
+            ClickableItem(createAccountButton);
+            ImplicitWait(10);
+            inputText(emailField, eF);
+            inputText(passwordField, pF);
+            inputText(firstNameField, fNF);
+            inputText(lastNameField, lNF);
+            inputText(addressField, aF);
+            dropDownItemSelect(cityField, cF);
+            inputText(phoneField, phF);
+            CheckBoxItem(termsCheck);
+            CheckBoxItem(subscribeCheck);
+            ClickableItem(createAccountSubmitButton);
         }
     }
 }

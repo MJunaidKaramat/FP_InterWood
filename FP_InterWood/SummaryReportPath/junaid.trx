@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="e634978c-4e9c-4242-a934-060d02bd5d97" name="karamjun@CRLHV-PRET16 2022-10-04 19:13:18" runUser="CONTOURSOFTWARE\karamjun" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2022-10-04T19:13:18.1193199+05:00" queuing="2022-10-04T19:13:18.1193199+05:00" start="2022-10-04T19:12:32.7067498+05:00" finish="2022-10-04T19:15:13.8451136+05:00" />
+  <TestSettings name="default" id="ed5e0283-152f-4acd-adc3-56e0c0ee0b29">
+    <Deployment runDeploymentRoot="karamjun_CRLHV-PRET16_2022-10-04_19_13_18" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="06463c0d-4d83-46e3-b950-c446c3139291" testId="a003396f-e066-4e86-9385-1b8bfe1d6a58" testName="TC_04_signUpScreen (Data Row 0)" computerName="CRLHV-PRET16" duration="00:00:24.7977898" startTime="2022-10-04T19:13:39.6882531+05:00" endTime="2022-10-04T19:14:04.4898450+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="06463c0d-4d83-46e3-b950-c446c3139291" />
+    <UnitTestResult executionId="0fcc9fa5-9884-424c-8fc5-ffc0eaa84a72" testId="a5302e52-0acf-4084-ba38-53dd9a405747" testName="TC_03_signUpScreen (Data Row 0)" computerName="CRLHV-PRET16" duration="00:00:21.6423070" startTime="2022-10-04T19:13:18.0423192+05:00" endTime="2022-10-04T19:13:39.6862536+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0fcc9fa5-9884-424c-8fc5-ffc0eaa84a72" />
+    <UnitTestResult executionId="33af8374-9e72-4116-87a3-92b13c3c68ec" testId="9226f0b1-26c7-43fa-8797-b7ce86dc5450" testName="TC_05_signUpScreen (Data Row 0)" computerName="CRLHV-PRET16" duration="00:00:20.8754863" startTime="2022-10-04T19:14:04.4908447+05:00" endTime="2022-10-04T19:14:25.3680372+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="33af8374-9e72-4116-87a3-92b13c3c68ec" />
+    <UnitTestResult executionId="82d04698-df60-4ca5-98b5-11d337aeffda" testId="33c41393-3cbf-402a-86e1-7039b395ce29" testName="TC_06_signUpScreen (Data Row 0)" computerName="CRLHV-PRET16" duration="00:00:48.1615213" startTime="2022-10-04T19:14:25.3700377+05:00" endTime="2022-10-04T19:15:13.5351158+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="82d04698-df60-4ca5-98b5-11d337aeffda">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method FP_InterWood.UnitTest1.TC_06_signUpScreen threw exception: &#xD;
+OpenQA.Selenium.WebDriverTimeoutException: Timed out after 10 seconds ---&gt; OpenQA.Selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//button[@class='logged-in']/span/span[contains(text(),'Hi')]"}
+  (Session info: chrome=106.0.5249.91)</Message>
+          <StackTrace>    at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse, String commandToExecute)&#xD;
+   at OpenQA.Selenium.WebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)&#xD;
+   at OpenQA.Selenium.WebDriver.FindElement(String mechanism, String value)&#xD;
+   at OpenQA.Selenium.By.&lt;.ctor&gt;b__11_0(ISearchContext context)&#xD;
+   at OpenQA.Selenium.By.FindElement(ISearchContext context)&#xD;
+   at OpenQA.Selenium.WebDriver.FindElement(By by)&#xD;
+   at SeleniumExtras.WaitHelpers.ExpectedConditions.&lt;&gt;c__DisplayClass7_0.&lt;ElementIsVisible&gt;b__0(IWebDriver driver)&#xD;
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition, CancellationToken token)&#xD;
+--- End of inner exception stack trace ---&#xD;
+    at OpenQA.Selenium.Support.UI.DefaultWait`1.ThrowTimeoutException(String exceptionMessage, Exception lastException)&#xD;
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition, CancellationToken token)&#xD;
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition)&#xD;
+   at FP_InterWood.GeneralMethodsClass.ExplicitWaitElementIsVisible(By path) in C:\Users\karamjun\source\repos\FP_InterWood\FP_InterWood\GeneralMethodsClass.cs:line 86&#xD;
+   at FP_InterWood.GeneralMethodsClass.getText(By path) in C:\Users\karamjun\source\repos\FP_InterWood\FP_InterWood\GeneralMethodsClass.cs:line 129&#xD;
+   at FP_InterWood.UnitTest1.TC_06_signUpScreen() in C:\Users\karamjun\source\repos\FP_InterWood\FP_InterWood\UnitTest1.cs:line 169&#xD;
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="6ab3ac19-1733-412e-ba78-319be99f5954" testId="15ac5e8a-f7dc-481c-b6c0-71b897ccd8a2" testName="TC_02_signUpScreen (Data Row 0)" computerName="CRLHV-PRET16" duration="00:00:39.4048374" startTime="2022-10-04T19:12:37.1717146+05:00" endTime="2022-10-04T19:13:17.9893206+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6ab3ac19-1733-412e-ba78-319be99f5954">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method FP_InterWood.UnitTest1.TC_02_signUpScreen threw exception: &#xD;
+OpenQA.Selenium.WebDriverTimeoutException: Timed out after 10 seconds ---&gt; OpenQA.Selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//button[@class='logged-in']/span/span[contains(text(),'Hi')]"}
+  (Session info: chrome=106.0.5249.91)</Message>
+          <StackTrace>    at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse, String commandToExecute)&#xD;
+   at OpenQA.Selenium.WebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)&#xD;
+   at OpenQA.Selenium.WebDriver.FindElement(String mechanism, String value)&#xD;
+   at OpenQA.Selenium.By.&lt;.ctor&gt;b__11_0(ISearchContext context)&#xD;
+   at OpenQA.Selenium.By.FindElement(ISearchContext context)&#xD;
+   at OpenQA.Selenium.WebDriver.FindElement(By by)&#xD;
+   at SeleniumExtras.WaitHelpers.ExpectedConditions.&lt;&gt;c__DisplayClass7_0.&lt;ElementIsVisible&gt;b__0(IWebDriver driver)&#xD;
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition, CancellationToken token)&#xD;
+--- End of inner exception stack trace ---&#xD;
+    at OpenQA.Selenium.Support.UI.DefaultWait`1.ThrowTimeoutException(String exceptionMessage, Exception lastException)&#xD;
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition, CancellationToken token)&#xD;
+   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition)&#xD;
+   at FP_InterWood.GeneralMethodsClass.ExplicitWaitElementIsVisible(By path) in C:\Users\karamjun\source\repos\FP_InterWood\FP_InterWood\GeneralMethodsClass.cs:line 86&#xD;
+   at FP_InterWood.GeneralMethodsClass.getText(By path) in C:\Users\karamjun\source\repos\FP_InterWood\FP_InterWood\GeneralMethodsClass.cs:line 129&#xD;
+   at FP_InterWood.UnitTest1.TC_02_signUpScreen() in C:\Users\karamjun\source\repos\FP_InterWood\FP_InterWood\UnitTest1.cs:line 74&#xD;
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="TC_05_signUpScreen (Data Row 0)" storage="c:\users\karamjun\source\repos\fp_interwood\fp_interwood\bin\debug\fp_interwood.dll" id="9226f0b1-26c7-43fa-8797-b7ce86dc5450">
+      <Execution id="33af8374-9e72-4116-87a3-92b13c3c68ec" />
+      <TestMethod codeBase="C:\Users\karamjun\source\repos\FP_InterWood\FP_InterWood\bin\Debug\FP_InterWood.dll" adapterTypeName="executor://mstestadapter/v2" className="FP_InterWood.UnitTest1" name="TC_05_signUpScreen" />
+    </UnitTest>
+    <UnitTest name="TC_02_signUpScreen (Data Row 0)" storage="c:\users\karamjun\source\repos\fp_interwood\fp_interwood\bin\debug\fp_interwood.dll" id="15ac5e8a-f7dc-481c-b6c0-71b897ccd8a2">
+      <Execution id="6ab3ac19-1733-412e-ba78-319be99f5954" />
+      <TestMethod codeBase="C:\Users\karamjun\source\repos\FP_InterWood\FP_InterWood\bin\Debug\FP_InterWood.dll" adapterTypeName="executor://mstestadapter/v2" className="FP_InterWood.UnitTest1" name="TC_02_signUpScreen" />
+    </UnitTest>
+    <UnitTest name="TC_03_signUpScreen (Data Row 0)" storage="c:\users\karamjun\source\repos\fp_interwood\fp_interwood\bin\debug\fp_interwood.dll" id="a5302e52-0acf-4084-ba38-53dd9a405747">
+      <Execution id="0fcc9fa5-9884-424c-8fc5-ffc0eaa84a72" />
+      <TestMethod codeBase="C:\Users\karamjun\source\repos\FP_InterWood\FP_InterWood\bin\Debug\FP_InterWood.dll" adapterTypeName="executor://mstestadapter/v2" className="FP_InterWood.UnitTest1" name="TC_03_signUpScreen" />
+    </UnitTest>
+    <UnitTest name="TC_06_signUpScreen (Data Row 0)" storage="c:\users\karamjun\source\repos\fp_interwood\fp_interwood\bin\debug\fp_interwood.dll" id="33c41393-3cbf-402a-86e1-7039b395ce29">
+      <Execution id="82d04698-df60-4ca5-98b5-11d337aeffda" />
+      <TestMethod codeBase="C:\Users\karamjun\source\repos\FP_InterWood\FP_InterWood\bin\Debug\FP_InterWood.dll" adapterTypeName="executor://mstestadapter/v2" className="FP_InterWood.UnitTest1" name="TC_06_signUpScreen" />
+    </UnitTest>
+    <UnitTest name="TC_04_signUpScreen (Data Row 0)" storage="c:\users\karamjun\source\repos\fp_interwood\fp_interwood\bin\debug\fp_interwood.dll" id="a003396f-e066-4e86-9385-1b8bfe1d6a58">
+      <Execution id="06463c0d-4d83-46e3-b950-c446c3139291" />
+      <TestMethod codeBase="C:\Users\karamjun\source\repos\FP_InterWood\FP_InterWood\bin\Debug\FP_InterWood.dll" adapterTypeName="executor://mstestadapter/v2" className="FP_InterWood.UnitTest1" name="TC_04_signUpScreen" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="a003396f-e066-4e86-9385-1b8bfe1d6a58" executionId="06463c0d-4d83-46e3-b950-c446c3139291" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a5302e52-0acf-4084-ba38-53dd9a405747" executionId="0fcc9fa5-9884-424c-8fc5-ffc0eaa84a72" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9226f0b1-26c7-43fa-8797-b7ce86dc5450" executionId="33af8374-9e72-4116-87a3-92b13c3c68ec" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="33c41393-3cbf-402a-86e1-7039b395ce29" executionId="82d04698-df60-4ca5-98b5-11d337aeffda" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="15ac5e8a-f7dc-481c-b6c0-71b897ccd8a2" executionId="6ab3ac19-1733-412e-ba78-319be99f5954" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="5" executed="5" passed="3" failed="2" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+</TestRun>
