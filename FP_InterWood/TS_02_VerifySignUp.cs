@@ -28,7 +28,7 @@ namespace FP_InterWood
         By CreateAccountSubmitButton = By.XPath("//button[text()='Create Account']");
         #endregion
 
-        public void TC03_SignUpWithValidCredentials(string eF, string pF, string fNF, string lNF, string aF, 
+        public void TC02_SignUpWithValidCredentials(string eF, string pF, string fNF, string lNF, string aF, 
         string cF, string phF)
         {
             ClickableItem(userIcon);
@@ -45,7 +45,7 @@ namespace FP_InterWood
             CheckBoxItem(subscribeCheck);
             ClickableItem(CreateAccountSubmitButton);
         }
-        public void TC04_SignUpWithInvalidCredentials(string eF, string pF, string fNF, string lNF, string aF,
+        public void TC03_SignUpWithInvalidCredentials(string eF, string pF, string fNF, string lNF, string aF,
         string cF, string phF)
         {
             ClickableItem(userIcon);
@@ -64,7 +64,7 @@ namespace FP_InterWood
 
         }
 
-        public void TC05_SignUpButtonClickable(string eF, string pF, string fNF, string lNF, string aF,
+        public void TC04_SignUpButtonClickable(string eF, string pF, string fNF, string lNF, string aF,
         string cF, string phF)
         {
             ClickableItem(userIcon);
@@ -80,8 +80,22 @@ namespace FP_InterWood
             CheckBoxItem(termsCheck);
             CheckBoxItem(subscribeCheck);
             ClickableItem(CreateAccountSubmitButton);
-
         }
 
+        public void TC05_SignUpWithoutAcceptingTerms(string eF, string pF, string fNF, string lNF, string aF,
+        string cF, string phF)
+        {
+            ClickableItem(userIcon);
+            ClickableItem(createAccountButton);
+            ImplicitWait(10);
+            inputText(emailField, eF);
+            inputText(passwordField, pF);
+            inputText(firstNameField, fNF);
+            inputText(lastNameField, lNF);
+            inputText(addressField, aF);
+            dropDownItemSelect(cityField, cF);
+            inputText(phoneField, phF);
+            ClickableItem(CreateAccountSubmitButton);
+        }
     }
 }

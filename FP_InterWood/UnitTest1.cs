@@ -20,7 +20,7 @@ namespace FP_InterWood
         GeneralMethodsClass obj = new GeneralMethodsClass();
         SignUPClass signUpObj = new SignUPClass();
         landingPageClass lpObj = new landingPageClass();
-        SignInClass signInObj = new SignInClass();
+        TS_03_VerifyLogin signInObj = new TS_03_VerifyLogin();
         landingPageClass lpClass = new landingPageClass();
         ElementSelectOnLandingPage eslpObj = new ElementSelectOnLandingPage();
 
@@ -29,37 +29,52 @@ namespace FP_InterWood
         string edge = "edge";
 
         [TestMethod]
-        public void BrowserCompatibilityCheck()
+        public void TC_01_BrowserCompatibilityCheck()
         {
+            By mainLogo = By.XPath("//*[@id=\"root\"]/main/div[3]/header/div/div/div[1]/div[1]/a/img");
+
             TS_01_VerifyURLWorkingWithBrowsers testCase = new TS_01_VerifyURLWorkingWithBrowsers();
             testCase.chromeBrowser(chrome, url);
+            IWebElement mainPageLogo = testCase.findElement(mainLogo);
+            Assert.IsTrue(mainPageLogo != null);
+            testCase.LogFile("Home Page has been Loaded Successfully");
             testCase.closeBrowser();
+
             testCase.edgeBrowser(edge, url);
+            Assert.IsTrue(mainPageLogo != null);
+            testCase.LogFile("Home Page has been Loaded Successfully");
             testCase.closeBrowser();
-        }
-
-        [TestMethod]
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signUpData.xml", "SignUpValid", DataAccessMethod.Sequential)]
-        public void signUpScreen1()
-        {
-            TS_02_VerifySignUp signUpObj = new TS_02_VerifySignUp();
-
-            string email = TestContext.DataRow["userEmail"].ToString();
-            string password = TestContext.DataRow["userPassword"].ToString();
-            string firstName = TestContext.DataRow["firstName"].ToString();
-            string lastName = TestContext.DataRow["lastName"].ToString();
-            string address = TestContext.DataRow["userAddress"].ToString();
-            string city = TestContext.DataRow["userCity"].ToString();
-            string phone = TestContext.DataRow["userPhone"].ToString();
             
-            signUpObj.BrowserSelection(edge);
-            signUpObj.landingPage(url);
-            signUpObj.TC03_SignUpWithValidCredentials(email, password, firstName, lastName, address, city, phone);
         }
 
-        [TestMethod]
+        //[TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signUpData.xml", "SignUpValid", DataAccessMethod.Sequential)]
+        public void TC_02_signUpScreen()
+        {
+            TS_02_VerifySignUp signUpObj = new TS_02_VerifySignUp();
+
+            string email = TestContext.DataRow["userEmail"].ToString();
+            string password = TestContext.DataRow["userPassword"].ToString();
+            string firstName = TestContext.DataRow["firstName"].ToString();
+            string lastName = TestContext.DataRow["lastName"].ToString();
+            string address = TestContext.DataRow["userAddress"].ToString();
+            string city = TestContext.DataRow["userCity"].ToString();
+            string phone = TestContext.DataRow["userPhone"].ToString();
+            signUpObj.LogFile("Email: " + email);
+            signUpObj.LogFile("Password: " + password);
+            signUpObj.LogFile("First Name: " + firstName);
+            signUpObj.LogFile("Last Name: " + lastName);
+            signUpObj.LogFile("Address: " + address);
+            signUpObj.LogFile("City: " + city);
+            signUpObj.LogFile("Phone: " + phone);
+            signUpObj.BrowserSelection(chrome);
+            signUpObj.landingPage(url);
+            signUpObj.TC02_SignUpWithValidCredentials(email, password, firstName, lastName, address, city, phone);
+            signUpObj.closeBrowser();
+        }
+        //[TestMethod]
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signUpData.xml", "SignUpInvalid", DataAccessMethod.Sequential)]
-        public void signUpScreen2()
+        public void TC_03_signUpScreen()
         {
             TS_02_VerifySignUp signUpObj = new TS_02_VerifySignUp();
 
@@ -71,13 +86,14 @@ namespace FP_InterWood
             string city = TestContext.DataRow["userCity"].ToString();
             string phone = TestContext.DataRow["userPhone"].ToString();
 
-            signUpObj.BrowserSelection(edge);
+            signUpObj.BrowserSelection(chrome);
             signUpObj.landingPage(url);
-            signUpObj.TC04_SignUpWithInvalidCredentials(email, password, firstName, lastName, address, city, phone);
+            signUpObj.TC03_SignUpWithInvalidCredentials(email, password, firstName, lastName, address, city, phone);
+            signUpObj.closeBrowser();
         }
-        [TestMethod]
+        //[TestMethod]
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signUpData.xml", "SignUpClickable", DataAccessMethod.Sequential)]
-        public void signUpScreen3()
+        public void TC_04_signUpScreen()
         {
             TS_02_VerifySignUp signUpObj = new TS_02_VerifySignUp();
 
@@ -89,33 +105,115 @@ namespace FP_InterWood
             string city = TestContext.DataRow["userCity"].ToString();
             string phone = TestContext.DataRow["userPhone"].ToString();
 
-            signUpObj.BrowserSelection(edge);
+            signUpObj.BrowserSelection(chrome);
             signUpObj.landingPage(url);
-            signUpObj.TC05_SignUpButtonClickable(email, password, firstName, lastName, address, city, phone);
+            signUpObj.TC04_SignUpButtonClickable(email, password, firstName, lastName, address, city, phone);
+            signUpObj.closeBrowser();
         }
-        [TestMethod]
-        public void signInScreen()
+        //[TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signUpData.xml", "SignUpValid", DataAccessMethod.Sequential)]
+        public void TC_05_signUpScreen()
         {
+            TS_02_VerifySignUp signUpObj = new TS_02_VerifySignUp();
+
+            string email = TestContext.DataRow["userEmail"].ToString();
+            string password = TestContext.DataRow["userPassword"].ToString();
+            string firstName = TestContext.DataRow["firstName"].ToString();
+            string lastName = TestContext.DataRow["lastName"].ToString();
+            string address = TestContext.DataRow["userAddress"].ToString();
+            string city = TestContext.DataRow["userCity"].ToString();
+            string phone = TestContext.DataRow["userPhone"].ToString();
+
+            signUpObj.BrowserSelection(chrome);
+            signUpObj.landingPage(url);
+            signUpObj.TC05_SignUpWithoutAcceptingTerms(email, password, firstName, lastName, address, city, phone);
+            signUpObj.closeBrowser();
+        }
+
+        [TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signInData.xml", "LoginValid", DataAccessMethod.Sequential)]
+        public void TC_06_SignInScreen()
+        {
+            TS_03_VerifyLogin signInObj = new TS_03_VerifyLogin();
+
+            string email = TestContext.DataRow["userEmail"].ToString();
+            string pass = TestContext.DataRow["userPassword"].ToString();
+
+            signInObj.BrowserSelection(chrome);
             signInObj.landingPage(url);
-            lpObj.signinSignUpButton();
-            System.Threading.Thread.Sleep(3000);
-            signInObj.signIn();
+            signInObj.SignInFunctionality(email, pass);
+            
+            signInObj.closeBrowser();
         }
         [TestMethod]
-        public void LandingPage()
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signInData.xml", "LoginInvalid", DataAccessMethod.Sequential)]
+        public void TC_07_SignInScreen()
         {
-            lpClass.landingPage(url);
-            lpClass.ScrollHomePage();
-            Thread.Sleep(4000);
-            lpClass.cartStatus();
-            lpClass.cartStatus();
-            lpClass.navBarScrolling();
+            TS_03_VerifyLogin signInObj = new TS_03_VerifyLogin();
+
+            string email = TestContext.DataRow["userEmail"].ToString();
+            string pass = TestContext.DataRow["userPassword"].ToString();
+
+            signInObj.BrowserSelection(chrome);
+            signInObj.landingPage(url);
+            signInObj.SignInFunctionality(email, pass);
+            signInObj.closeBrowser();
         }
         [TestMethod]
-        public void selectElementPage()
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signInData.xml", "LoginWithUnregistered", DataAccessMethod.Sequential)]
+        public void TC_08_SignInScreen()
         {
-            eslpObj.landingPage(url);
-            eslpObj.selectObject();
+            TS_03_VerifyLogin signInObj = new TS_03_VerifyLogin();
+
+            string email = TestContext.DataRow["userEmail"].ToString();
+            string pass = TestContext.DataRow["userPassword"].ToString();
+
+            signInObj.BrowserSelection(chrome);
+            signInObj.landingPage(url);
+            signInObj.SignInFunctionality(email, pass);
+            signInObj.closeBrowser();
+        }
+        [TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signInData.xml", "LoginWithEmptyEmailPass", DataAccessMethod.Sequential)]
+        public void TC_09_SignInScreen()
+        {
+            TS_03_VerifyLogin signInObj = new TS_03_VerifyLogin();
+
+            string email = TestContext.DataRow["userEmail"].ToString();
+            string pass = TestContext.DataRow["userPassword"].ToString();
+
+            signInObj.BrowserSelection(chrome);
+            signInObj.landingPage(url);
+            signInObj.SignInFunctionality(email, pass);
+            signInObj.closeBrowser();
+        }
+        [TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signInData.xml", "LoginWithEmptyEmail", DataAccessMethod.Sequential)]
+        public void TC_10_SignInScreen()
+        {
+            TS_03_VerifyLogin signInObj = new TS_03_VerifyLogin();
+
+            string email = TestContext.DataRow["userEmail"].ToString();
+            string pass = TestContext.DataRow["userPassword"].ToString();
+
+            signInObj.BrowserSelection(chrome);
+            signInObj.landingPage(url);
+            signInObj.SignInFunctionality(email, pass);
+            signInObj.closeBrowser();
+        }
+        [TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "signInData.xml", "LoginWithEmptyPass", DataAccessMethod.Sequential)]
+        public void TC_11_SignInScreen()
+        {
+            TS_03_VerifyLogin signInObj = new TS_03_VerifyLogin();
+
+            string email = TestContext.DataRow["userEmail"].ToString();
+            string pass = TestContext.DataRow["userPassword"].ToString();
+
+            signInObj.BrowserSelection(chrome);
+            signInObj.landingPage(url);
+            signInObj.SignInFunctionality(email, pass);
+            signInObj.closeBrowser();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace FP_InterWood
     public class GeneralMethodsClass
     {
         public static IWebDriver driver;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public GeneralMethodsClass()
         {
             //driver = null;
@@ -72,7 +73,8 @@ namespace FP_InterWood
         }
         public void inputText(By path, string data)
         {
-            IWebElement txtBox = findElement(path);
+
+            IWebElement txtBox = ExplicitWaitElementIsVisible(path);
             txtBox.SendKeys(data);
         }
         public void ImplicitWait(int i)
@@ -118,11 +120,13 @@ namespace FP_InterWood
         }
         public void switchToChildFrame()
         {
-
             var prntWindow = driver.WindowHandles[0];
             var cldWindow = driver.WindowHandles[1];
             driver.SwitchTo().Frame(cldWindow);
-
+        }
+        public void LogFile(string str)
+        {
+            log.Info(str);
         }
     }
 }
